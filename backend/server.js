@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const authRoutes = require('./routes/authRoutes');
 const bookRoutes = require('./routes/bookRoutes');
+const messageRoutes = require('./routes/messageRoutes');
+const cors = require('cors');
 
 // Carregar variáveis de ambiente
 dotenv.config();
@@ -18,9 +20,12 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
   .then(() => console.log('Conexão com o MongoDB bem-sucedida'))
   .catch((err) => console.log('Erro de conexão:', err));
 
+app.use(cors());
+
 // Roteadores
 app.use('/api/auth', authRoutes);
 app.use('/api/books', bookRoutes);
+app.use('/api/messages', messageRoutes);
 
 // Iniciar o servidor
 const PORT = process.env.PORT || 5000;
