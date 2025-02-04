@@ -29,4 +29,20 @@ header {
   left: 0;
   z-index: 1000; /* Garante que o header fique acima de outros elementos */
 }
+button {
+  background: rgba(255, 255, 255, 0.2); /* Fundo semi-transparente */
+  border: none; /* Sem borda */
+  border-radius: 10px; /* Cantos arredondados */
+  padding: 15px 40px;
+  font-size: 24px;
+  font-weight: bold;
+  color: black; /* Cor do texto */
+  cursor: pointer;
+  backdrop-filter: blur(5px); /* Efeito de vidro fosco */
+}
+
+button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
 </style>
