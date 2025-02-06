@@ -1,15 +1,97 @@
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      email: '',
+      message: '',
+      successMessage: '',
+      errorMessage: ''
+    };
+  },
+  methods: {
+    async submitForm() {
+      try {
+        const response = await axios.post('http://localhost:5000/api/messages/send', {
+          email: this.email,
+          message: this.message
+        });
+
+        this.successMessage = response.data.message;
+        this.email = '';
+        this.message = '';
+      } catch (error) {
+        this.errorMessage = 'Erro ao enviar mensagem. Tente novamente.';
+      }
+    }
+  }
+};
+</script>
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div class="container">
+    <form @submit.prevent="submitForm">
+      <h1>Contatos</h1>
+      <input type="email" v-model="email" required placeholder="Email">
+      <textarea v-model="message" required placeholder="Mensagem" rows="5"></textarea>
+      <button class="enviar">Enviar</button>
+    </form>
+    <p v-if="successMessage" class="success">{{ successMessage }}</p>
+    <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
   </div>
 </template>
-
 <style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.2);
+/* Fundo semi-transparente */
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  font-size: 60px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+}
+
+input,
+textarea {
+  background: #f5f5f5;
+}
+
+.enviar {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  background: #ddd;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+enviar:hover {
+  background: #ccc;
 }
 </style>
