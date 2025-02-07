@@ -5,7 +5,6 @@ const authMiddleware = require('../middlewares/authMiddleware');
 
 const router = express.Router();
 
-// Listar todos os livros
 router.get('/', async (req, res) => {
   try {
     const books = await Book.find();
@@ -16,7 +15,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Adicionar um novo livro
 router.post('/', async (req, res) => {
   const { titulo, autor, ano, disponivel } = req.body;
 
@@ -30,7 +28,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Atualizar um livro
 router.put('/:id', async (req, res) => {
   try {
     const book = await Book.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -42,7 +39,6 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// Apagar um livro
 router.delete('/:id', async (req, res) => {
   try {
     const book = await Book.findByIdAndDelete(req.params.id);

@@ -32,9 +32,9 @@ const router = createRouter({
         const token = localStorage.getItem('token');
         const userTipo = localStorage.getItem('userTipo');
         if (token && userTipo === 'admin') {
-          next(); // Permite a entrada na página Admin
+          next();
         } else {
-          next('/login'); // Redireciona para a página de login se não for admin
+          next('/login');
         }
       }
     },
@@ -46,9 +46,9 @@ const router = createRouter({
         const token = localStorage.getItem('token');
         const userTipo = localStorage.getItem('userTipo');
         if (token && userTipo === 'admin') {
-          next(); // Permite a entrada na página Admin
+          next();
         } else {
-          next('/login'); // Redireciona para a página de login se não for admin
+          next('/login');
         }
       }
     },

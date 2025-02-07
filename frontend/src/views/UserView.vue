@@ -22,7 +22,6 @@ export default {
     },
     editUser(userId) {
       console.log('Editar utilizador:', userId);
-      // Redirecionar para a página de edição ou abrir modal
     },
     async deleteUser(userId) {
       if (confirm('Tem a certeza que quer apagar este utilizador?')) {
@@ -31,7 +30,7 @@ export default {
           await axios.delete(`http://localhost:5000/api/users/${userId}`, {
             headers: { Authorization: `Bearer ${token}` }
           });
-          this.fetchUsers(); // Atualiza a lista após apagar
+          this.fetchUsers();
         } catch (error) {
           console.error('Erro ao apagar utilizador:', error);
         }

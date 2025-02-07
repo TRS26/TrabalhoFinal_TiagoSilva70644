@@ -31,7 +31,6 @@ body {
 
 .container {
   background: rgba(255, 255, 255, 0.2);
-  /* Fundo semi-transparente */
   padding: 20px;
   border-radius: 10px;
   text-align: center;

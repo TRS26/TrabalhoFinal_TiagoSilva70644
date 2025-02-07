@@ -29,11 +29,10 @@ export default {
           password: this.password
         });
 
-        // Guardar o token e o tipo de utilizador no localStorage
-        localStorage.setItem('token', response.data.token); // Guardar token
-        localStorage.setItem('userTipo', response.data.tipo); // Guardar o tipo de utilizador (admin, utilizador, etc.)
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('userTipo', response.data.tipo);
 
-        this.$router.push('/'); // Redirecionar para a página de livros ou página inicial
+        this.$router.push('/');
       } catch (err) {
         alert('Erro ao fazer login');
       }
@@ -55,7 +54,6 @@ body {
 
 .container {
   background: rgba(255, 255, 255, 0.2);
-/* Fundo semi-transparente */
   padding: 20px;
   border-radius: 10px;
   text-align: center;

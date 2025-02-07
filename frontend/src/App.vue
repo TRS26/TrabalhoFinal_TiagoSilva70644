@@ -6,31 +6,25 @@ const router = useRouter();
 const isAuthenticated = ref(false);
 const userTipo = ref('');
 
-// Função para verificar se o utilizador está autenticado
 const checkAuth = () => {
   const token = localStorage.getItem('token');
   userTipo.value = localStorage.getItem('userTipo') || ''; 
-  isAuthenticated.value = !!token; // Converte para booleano
+  isAuthenticated.value = !!token;
 };
 
-// Chama checkAuth quando o componente é montado
 onMounted(() => {
   checkAuth();
 });
 
-// Logout
 const logout = async () => {
   localStorage.removeItem('token');
   localStorage.removeItem('userTipo');
   
-  // Atualiza os estados de autenticação
   isAuthenticated.value = false;
   userTipo.value = '';
   
-  // Garante que o Vue atualize o DOM corretamente
   await nextTick(); 
   
-  // Redireciona para a página inicial
   router.push('/');
 };
 </script>
@@ -41,7 +35,6 @@ const logout = async () => {
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/contatos" class="contatos">Contatos</RouterLink>
       </nav>
-      <!-- Botão de Login / Logout -->
       <button @click="isAuthenticated ? logout() : router.push('/login')">
         {{ isAuthenticated ? 'Logout' : 'Login' }}
       </button>
@@ -52,27 +45,27 @@ const logout = async () => {
 <style scoped>
 header {
   display: flex;
-  justify-content: center; /* Centraliza o conteúdo */
+  justify-content: center;
   align-items: center;
-  background-color: transparent; /* Fundo transparente */
+  background-color: transparent;
   padding: 20px;
-  position: fixed; /* Fixa o header no topo */
+  position: fixed;
   width: 100%;
   top: 0;
   left: 0;
-  z-index: 1000; /* Garante que o header fique acima de outros elementos */
+  z-index: 1000;
   margin-left: 18%;
 }
 button {
-  background: rgba(255, 255, 255, 0.2); /* Fundo semi-transparente */
-  border: none; /* Sem borda */
-  border-radius: 10px; /* Cantos arredondados */
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 10px;
   padding: 15px 40px;
   font-size: 24px;
   font-weight: bold;
-  color: black; /* Cor do texto */
+  color: black;
   cursor: pointer;
-  backdrop-filter: blur(5px); /* Efeito de vidro fosco */
+  backdrop-filter: blur(5px);
   margin-left: 30%;
 }
 

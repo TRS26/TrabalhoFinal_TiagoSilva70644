@@ -21,8 +21,8 @@ export default {
         });
 
         this.successMessage = 'Registo bem-sucedido!';
-        localStorage.setItem('token', response.data.token); // Guarda o token JWT no armazenamento local
-        this.$router.push('/'); // Redireciona após o registo
+        localStorage.setItem('token', response.data.token);
+        this.$router.push('/');
       } catch (error) {
         this.errorMessage = error.response?.data?.msg || 'Erro no registo.';
       }
@@ -58,7 +58,6 @@ body {
 
 .container {
   background: rgba(255, 255, 255, 0.2);
-/* Fundo semi-transparente */
   padding: 20px;
   border-radius: 10px;
   text-align: center;
