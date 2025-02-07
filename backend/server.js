@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 const authRoutes = require('./routes/authRoutes');
 const bookRoutes = require('./routes/bookRoutes');
 const messageRoutes = require('./routes/messageRoutes');
+const usersRoutes = require('./routes/usersRoutes');
 const cors = require('cors');
 
 // Carregar variáveis de ambiente
@@ -26,6 +27,7 @@ app.use(cors());
 app.use('/api/auth', authRoutes);
 app.use('/api/books', bookRoutes);
 app.use('/api/messages', messageRoutes);
+app.use('/api/users', usersRoutes);
 
 // Iniciar o servidor
 const PORT = process.env.PORT || 5000;

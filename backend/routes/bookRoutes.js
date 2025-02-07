@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
 });
 
 // Adicionar um novo livro
-router.post('/', authMiddleware, async (req, res) => {
+router.post('/', async (req, res) => {
   const { titulo, autor, ano, disponivel } = req.body;
 
   try {
@@ -31,7 +31,7 @@ router.post('/', authMiddleware, async (req, res) => {
 });
 
 // Atualizar um livro
-router.put('/:id', authMiddleware, async (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
     const book = await Book.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!book) return res.status(404).json({ msg: 'Livro não encontrado' });
@@ -43,7 +43,7 @@ router.put('/:id', authMiddleware, async (req, res) => {
 });
 
 // Apagar um livro
-router.delete('/:id', authMiddleware, async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     const book = await Book.findByIdAndDelete(req.params.id);
     if (!book) return res.status(404).json({ msg: 'Livro não encontrado' });

@@ -12,9 +12,6 @@ const router = createRouter({
     {
       path: '/contatos',
       name: 'contatos',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('../views/ContatosView.vue'),
     },
     {
@@ -26,6 +23,62 @@ const router = createRouter({
       path: '/register',
       name: 'register',
       component: () => import('../views/Register.vue'),
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: () => import('../views/AdminView.vue'),
+      beforeEnter: (to, from, next) => {
+        const token = localStorage.getItem('token');
+        const userTipo = localStorage.getItem('userTipo');
+        if (token && userTipo === 'admin') {
+          next(); // Permite a entrada na página Admin
+        } else {
+          next('/login'); // Redireciona para a página de login se não for admin
+        }
+      }
+    },
+    {
+      path: '/admin/users',
+      name: 'users',
+      component: () => import('../views/UserView.vue'),
+      beforeEnter: (to, from, next) => {
+        const token = localStorage.getItem('token');
+        const userTipo = localStorage.getItem('userTipo');
+        if (token && userTipo === 'admin') {
+          next(); // Permite a entrada na página Admin
+        } else {
+          next('/login'); // Redireciona para a página de login se não for admin
+        }
+      }
+    },
+    {
+      path: '/admin/books',
+      name: 'books',
+      component: () => import('../views/BooksView.vue'),
+      beforeEnter: (to, from, next) => {
+        const token = localStorage.getItem('token');
+        const userTipo = localStorage.getItem('userTipo');
+        if (token && userTipo === 'admin') {
+          next();
+        } else {
+          next('/login'); 
+        }
+      }
+    },
+    {
+      path: '/admin/books/add',
+      name: 'booksadd',
+      component: () => import('../views/AddBookView.vue'),
+      beforeEnter: (to, from, next) => {
+        const token = localStorage.getItem('token');
+        const userTipo = localStorage.getItem('userTipo');
+        if (token && userTipo === 'admin') {
+          next();
+        } else {
+          next('/login');
+        }
+      },
     },
   ],
 })
